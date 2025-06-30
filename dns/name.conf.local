@@ -1,0 +1,10 @@
+
+
+
+zone "BYE.br"{
+    type master;
+    file "/etc/bind/db.asa.br";
+    allow-transfer {
+        127.0.0.1;
+    };
+}
