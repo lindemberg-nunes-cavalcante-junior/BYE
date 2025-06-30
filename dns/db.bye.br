@@ -1,5 +1,5 @@
 $TTL 604800
-@ IN SOA ns.BYE.br. root.BYE.br. (
+@ IN SOA ns.bye.br. root.bye.br. (
              1
         604800
         86400
