@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  dns:
+    build:
+      context: ./dns
+      dockerfile: Dockerfile
+    container_name: dns
+   # ports:
+   #   - "53:53/udp"
+   #   - "53:53/tcp"
+    networks:
+      - rede_isp
+
+  portal:
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    container_name: portal
+    networks:
+      - rede_isp
+
+  proxy:
+    build:
+      context: ./proxy_ISP
+      dockerfile: Dockerfile
+    container_name: proxy
+    ports:
+      - "80:80/tcp"
+    networks:
+      - rede_isp
+
+  email:
+    build:
+      context: ./email
+      dockerfile: Dockerfile
+    container_name: email
+    ports:
+      - "25:25"
+      - "587:587"
+      - "993:993"
+    networks:
+      - rede_isp
+
+networks:
+  rede_isp:
+    driver: bridge
+
