@@ -12,6 +12,12 @@ services:
       context: ./portal
       dockerfile: Dockerfile
     container_name: portal
+    #ports:
+    #  - "80:80/tcp"
+  proxy:
+    build:
+      context: ./proxy_ISP
+      dockerfile: Dockerfile
+    container_name: proxy
     ports:
-      - "80:80/tcp"
-    
+    - "80:80/tcp"  
