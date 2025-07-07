@@ -98,7 +98,23 @@
 | Documentar configurações e rede      |  Feito   |
 | Preparar próximos passos (Cliente 1) |  Em curso |
 
+
 ---
+## Relatorio
+|Entrega concluida   |   Entrega Parcial |
+|--------------|--------|
+ Conexão com DNS
+ Conexão do Proxy(Sem SSl)  |   Conexão SSl |
+ Documentção em  vídeo|
+
+
+
 ---
+ ## Videos de Demonstração
 
 **Última atualização:** Sprint 1 — Semana 2  
+<div align="center">
+  <video src="" controls width="600">
+    Seu navegador não suporta este vídeo.
+  </video>
+</div>
