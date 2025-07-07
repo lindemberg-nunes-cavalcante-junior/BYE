@@ -7,6 +7,12 @@
 
 ---
 
+# Cronograma de Reunião
+| Dia De Reunião | Liderado | Assunto RN |
+|----------------|----------|------------|
+| 04/07/2025     |Lindemberg| Soluiconar Webmail e SSL |
+| **/**/2025     |Matheus   |
+---
 ##  Entregas da Sprint 1
 
 -  Artefatos de gerenciamento
