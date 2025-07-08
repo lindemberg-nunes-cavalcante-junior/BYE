@@ -102,7 +102,7 @@
 ---
 ## Relatorio
 |Entrega concluida          |Entrega Parcial |
-|--------------|--------|
+|-----------------|--------------------------|
  Configuração com DNS       | Webemail
  Conexão do Proxy(Sem SSl)  |  Conexão SSl |
  Documentção em  vídeo|     |
@@ -111,11 +111,5 @@
 
 
 ---
- ## Videos de Demonstração
-
-**Última atualização:** Sprint 1 — Semana 2  
-<div align="center">
-  <video src="https://github.com/lindemberg-nunes-cavalcante-junior/BYE/blob/main/videos/Acesso_ao_portal__Sem-SSL_.mp4" controls width="600">
-    Seu navegador não suporta este vídeo.
-  </video>
-</div>
+## Informção 
+O video requisitado está no google sala de aula
