@@ -1,16 +1,8 @@
 FROM ubuntu:latest
 
-RUN apt update -y
+RUN apt-get update && apt-get install -y bind9 dnsutils
 
-RUN apt upgrade -y
+COPY named.conf /etc/bind/named.conf
+COPY db.asa.local /etc/bind/db.asa.local
 
-RUN apt install bind9 dnsutils -y
-
-COPY named.conf.local /etc/bind
-
-COPY db.bye.br /etc/bind
-
-EXPOSE 53/tcp
-EXPOSE 53/udp
-
-CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
+CMD ["named", "-g"]

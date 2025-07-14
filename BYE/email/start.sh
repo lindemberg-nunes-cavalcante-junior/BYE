@@ -1,15 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-# Define um nome de host válido para o Postfix (caso ainda não exista)
-echo "bye.br" > /etc/mailname
+postconf -e "myhostname = bye.email"
+postconf -e "mydestination = \$myhostname, localhost.\$mydomain, localhost"
+postconf -e "inet_interfaces = all"
+postconf -e "inet_protocols = all"
 
-# Garante que o log existe
-touch /var/log/mail.log
-
-# Inicia os serviços
-service postfix start
-service dovecot start
-
-# Mantém o container ativo
-tail -F /var/log/mail.log
-
+/usr/sbin/postfix start-fg

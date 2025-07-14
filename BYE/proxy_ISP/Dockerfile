@@ -1,7 +1,7 @@
-FROM httpd:latest
+FROM ubuntu:latest
 
-COPY httpd.conf /conf/
-COPY proxy-html.conf /conf/extra/
+RUN apt-get update && apt-get install -y squid
 
-EXPOSE 80:80/tcp
+COPY squid.conf /etc/squid/squid.conf
 
+CMD ["squid", "-N", "-d", "1"]
