@@ -19,6 +19,18 @@ services:
     container_name: portal
     networks:
       - rede_isp
+      
+      
+  sign:
+    image: nginx:alpine
+    container_name: sign
+    volumes:
+      - ./sign:/usr/share/nginx/html:ro
+    networks:
+      - cliente1-net
+      environment:
+      VITE_API_URL: http://localhost/sign/api
+
 
   proxy:
     build:
