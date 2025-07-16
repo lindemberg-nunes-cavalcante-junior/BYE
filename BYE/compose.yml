@@ -61,14 +61,28 @@ services:
       context: ./cliente1/portal
       dockerfile: Dockerfile
     container_name: portal_cliente1
+    ports:
+      - "8081:80"
     networks:
       - rede_cliente1
 
   hotsite:
     image: nginx:alpine
     container_name: hotsite
+    ports:
+      - "8082:80"
     volumes:
       - ./cliente1/hotsite:/usr/share/nginx/html:ro
+    networks:
+      - rede_cliente1
+
+  sign:
+    image: nginx:alpine
+    container_name: sign
+    ports:
+      - "8083:80"
+    volumes:
+      - ./cliente1/sign:/usr/share/nginx/html:ro
     networks:
       - rede_cliente1
 
@@ -78,3 +92,4 @@ networks:
 
   rede_cliente1:
     driver: bridge
+
