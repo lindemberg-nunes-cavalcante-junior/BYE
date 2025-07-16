@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+
+  # ========================
+  # ISP - Infraestrutura
+  # ========================
+
+  dns:
+    build:
+      context: ./ISP/dns
+      dockerfile: Dockerfile
+    container_name: dns
+    networks:
+      - rede_isp
+
+  portal_isp:
+    build:
+      context: ./ISP/portal
+      dockerfile: Dockerfile
+    container_name: portal_isp
+    networks:
+      - rede_isp
+
+  proxy_isp:
+    build:
+      context: ./ISP/proxy_ISP
+      dockerfile: Dockerfile
+    container_name: proxy_isp
+    ports:
+      - "80:80/tcp"
+    networks:
+      - rede_isp
+
+  email:
+    build:
+      context: ./ISP/email
+      dockerfile: Dockerfile
+    container_name: email
+    ports:
+      - "25:25"
+      - "587:587"
+      - "993:993"
+    networks:
+      - rede_isp
+
+  webmail:
+    build:
+      context: ./ISP/webmail
+      dockerfile: Dockerfile
+    container_name: webmail
+    networks:
+      - rede_isp
+
+  # ========================
+  # CLIENTE 1
+  # ========================
+
+  portal_cliente1:
+    build:
+      context: ./cliente1/portal
+      dockerfile: Dockerfile
+    container_name: portal_cliente1
+    networks:
+      - rede_cliente1
+
+  hotsite:
+    image: nginx:alpine
+    container_name: hotsite
+    volumes:
+      - ./cliente1/hotsite:/usr/share/nginx/html:ro
+    networks:
+      - rede_cliente1
+
+networks:
+  rede_isp:
+    driver: bridge
+
+  rede_cliente1:
+    driver: bridge
