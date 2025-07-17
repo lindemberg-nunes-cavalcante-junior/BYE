@@ -23,15 +23,7 @@ services:
       - rede_isp
       
       
-  sign:
-    image: nginx:alpine
-    container_name: sign
-    volumes:
-      - ./sign:/usr/share/nginx/html:ro
-    networks:
-      - cliente1-net
-      environment:
-      VITE_API_URL: http://localhost/sign/api
+  
 
 
   proxy_isp:
@@ -97,7 +89,6 @@ services:
       - ./cliente1/sign:/usr/share/nginx/html:ro
     networks:
       - rede_cliente1
-
 networks:
   rede_isp:
     driver: bridge
