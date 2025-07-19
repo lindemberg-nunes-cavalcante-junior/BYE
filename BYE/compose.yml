@@ -1,7 +1,5 @@
-version: '3.8'
 
 services:
-
   # ========================
   # ISP - Infraestrutura
   # ========================
@@ -11,6 +9,9 @@ services:
       context: ./ISP/dns
       dockerfile: Dockerfile
     container_name: dns
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
     networks:
       - rede_isp
 
@@ -35,26 +36,27 @@ services:
       - "80:80/tcp"
     networks:
       - rede_isp
+      - rede_cliente1
 
-  email:
-    build:
-      context: ./ISP/email
-      dockerfile: Dockerfile
-    container_name: email
-    ports:
-      - "25:25"
-      - "587:587"
-      - "993:993"
-    networks:
-      - rede_isp
+  #email:
+  #  build:
+  #    context: ./ISP/email
+  #    dockerfile: Dockerfile
+  #  container_name: email
+  #  ports:
+  #    - "25:25"
+  #    - "587:587"
+  #    - "993:993"
+  #  networks:
+  #   - rede_isp
 
-  webmail:
-    build:
-      context: ./ISP/webmail
-      dockerfile: Dockerfile
-    container_name: webmail
-    networks:
-      - rede_isp
+  #webmail:
+  # build:
+  #    context: ./ISP/webmail
+  #    dockerfile: Dockerfile
+  #  container_name: webmail
+  #  networks:
+  #   - rede_isp
 
   # ========================
   # CLIENTE 1
@@ -74,7 +76,7 @@ services:
     image: nginx:alpine
     container_name: hotsite
     ports:
-      - "8082:80"
+      - "80/tcp"
     volumes:
       - ./cliente1/hotsite:/usr/share/nginx/html:ro
     networks:
@@ -84,15 +86,23 @@ services:
     image: nginx:alpine
     container_name: sign
     ports:
-      - "8083:80"
+      - "80/tcp"
     volumes:
       - ./cliente1/sign:/usr/share/nginx/html:ro
     networks:
       - rede_cliente1
+  
+  proxy_cliente:
+    build:
+      context: ./cliente1/proxy
+    container_name: proxyC1
+    #ports:
+    #  - "80/tcp"
+    networks:
+      - rede_cliente1
+    
 networks:
   rede_isp:
     driver: bridge
-
   rede_cliente1:
-    driver: bridge
-
+    internal: true
