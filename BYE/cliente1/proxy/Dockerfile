@@ -5,15 +5,12 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN a2enmod proxy
 RUN a2enmod proxy_http
 RUN a2enmod rewrite
-RUN service apache2 restart
 
 COPY 000-default.conf /etc/apache2/sites-enabled/
 
-
+RUN service apache2 restart
 
 # RUN apt-get install vim -y
-
-EXPOSE 80/tcp
 
 #COPY squid.conf /etc/squid/squid.conf
 #CMD ["squid", "-N", "-d", "1"]
