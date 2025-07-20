@@ -30,6 +30,7 @@ services:
     container_name: proxy_isp
     ports:
       - "80:80/tcp"
+      - "443:443/tcp"
     networks:
       - rede_isp
       - rede_cliente1
