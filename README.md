@@ -122,7 +122,7 @@
 | Hotsite e Portal operacionais        |                             |
 | Proxy com rotas funcionais           |                             |
 | Documentação escrita e vídeo enviado |                             |
-! SSL com Let’s Encrypt                |
+| SSL com Let’s Encrypt                |
 ---
 
 ##  Observações Finais
