@@ -95,7 +95,10 @@
 -  **Desafios enfrentados:**  
   - Comunicação API ↔ App exigiu ajuste de variáveis de ambiente e rotas
   - Testes locais exigiram sincronização das dependências (ex: proxy → API)
+  ---
 
+   ## problema Não resolvido
+- A conexão está apto para rodar 200, porém não consegue acessar o html do api dando erro 404
 ---
 
 ##  Progresso da Sprint
@@ -115,7 +118,7 @@
 
 | Entrega concluída                     | Entrega parcial             |
 |--------------------------------------|-----------------------------|
-| Sign App + API funcional             |  
+|                                      |  Funcionamento da api       |
 | Hotsite e Portal operacionais        |                             |
 | Proxy com rotas funcionais           |                             |
 | Documentação escrita e vídeo enviado |                             |
