@@ -41,8 +41,8 @@
 
 ##  Arquivos Entregues
 
-- `docker-compose.yml`: orquestração completa dos serviços do Cliente 1  
-- `nginx.conf`: configuração do proxy reverso  
+- `compose.yml`: orquestração completa dos serviços do Cliente 1  
+- `nginx`: configuração do proxy reverso  
 - `hotsite/index.html`: conteúdo institucional  
 - `Dockerfile` do portal  
 - `README.md`: este documento  
@@ -52,14 +52,14 @@
 
 ##  Redes Docker
 
-- `cliente1-net`: rede isolada para os serviços do Cliente 1  
+- `bye`: rede isolada para os serviços do Cliente 1  
 - Comunicação direta entre containers protegida e roteada via proxy
 
 ---
 
 ##  Ferramentas e Metodologia
 
-- **Ferramentas:** Docker, Docker Compose, GitHub, Nginx, VSCode  
+- **Ferramentas:** Docker, Docker Compose, GitHub, Nginx,apache,html, VSCode  
 - **Metodologia:** PMBoK + SCRUM  
   - Tarefas organizadas em Kanban  
   - Reuniões semanais com rodízio de liderança  
@@ -71,7 +71,7 @@
 
 - ** Feito:** Containers do hotsite, portal, sign-app e sign-api  
 - ** Objetivo:** Publicar todos os serviços via proxy reverso  
-- ** Bloqueio resolvido:** Comunicação entre sign-app e sign-api (`VITE_API_URL` e rota `/sign/api`)
+- ** Bloqueio resolvido:** Comunicação entre sign-app e sign-api (` rota `/sign/api`)
 
 ---
 
@@ -84,13 +84,7 @@
 
 ---
 
-##  Planejamento para Sprint 3
 
-- [ ] Iniciar os serviços dos Clientes 2 e 3  
-- [ ] Implementar HTTPS com Let’s Encrypt  
-- [ ] Realizar testes automatizados e coleta de métricas
-
----
 
 ##  Retrospectiva
 
@@ -113,7 +107,7 @@
 | Subir containers sign-app e sign-api   |  Feito  |
 | Criar e configurar proxy reverso       |  Feito  |
 | Testar e documentar os serviços        |  Feito  |
-| Configurar HTTPS                       |  Em curso |
+| Configurar HTTPS                       |  feito |
 
 ---
 
@@ -132,3 +126,12 @@
 
 - O vídeo de demonstração da sprint foi enviado via **Google Sala de Aula**.
 - O repositório com os arquivos está disponível no GitHub do grupo.
+
+---
+##  Planejamento para Sprint 3
+
+- [ ] Iniciar os serviços dos Clientes 2 e 3  
+- [ ] Implementar HTTPS com Let’s Encrypt  
+- [ ] Realizar testes automatizados e coleta de métricas
+
+---
