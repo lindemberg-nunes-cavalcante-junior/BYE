@@ -141,15 +141,55 @@ services:
   #  networks:
   #    - rede_cliente1
   
-  proxy_cliente:
+  proxy_cliente1:
     build:
       context: ./cliente1/proxy
     container_name: proxyC1
     networks:
       - rede_cliente1
     
+  # ========================
+  # CLIENTE 2
+  # ========================
+  proxy_cliente2: 
+    build:
+      context: ./cliente2/proxy
+    container_name: proxyC2
+    networks:
+      - rede_cliente2
+
+  portal_cliente2: # configurar
+    build:
+      context: ./cliente2/portal
+      dockerfile: Dockerfile
+    container_name: portal_cliente2
+    ports:
+      - "8081:80"
+    networks:
+      - rede_cliente2
+
+  # ========================
+  # CLIENTE 3
+  # ========================
+  proxy_cliente3:
+    build:
+      context: ./cliente3/proxy
+    container_name: proxyC3
+    networks:
+      - rede_cliente3
+
+  portal_cliente3: # configurar
+    build:
+      context: ./cliente3/portal
+      dockerfile: Dockerfile
+    container_name: portal_cliente3
+    ports:
+      - "8081:80"
+    networks:
+      - rede_cliente2
+
 networks:
   rede_isp:
     driver: bridge
   rede_cliente1:
-    internal: true
+    driver: bridge

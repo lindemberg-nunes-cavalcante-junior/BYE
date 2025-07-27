@@ -6,7 +6,7 @@ COPY /certs/server.key /etc/ssl/private/
 
 RUN apt-get update -y && apt-get upgrade -y
 
-RUN a2enmod proxy proxy_http proxy_connect rewrite ssl proxy_html
+RUN a2enmod proxy proxy_http proxy_connect rewrite ssl proxy_html headers
 
 RUN a2ensite default-ssl.conf
 

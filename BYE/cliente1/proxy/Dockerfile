@@ -2,9 +2,7 @@ FROM ubuntu/apache2:latest
 
 RUN apt-get update -y && apt-get upgrade -y
 
-RUN a2enmod proxy
-RUN a2enmod proxy_http
-RUN a2enmod rewrite
+RUN a2enmod proxy proxy_http proxy_connect rewrite ssl proxy_html headers
 
 COPY 000-default.conf /etc/apache2/sites-enabled/
 
