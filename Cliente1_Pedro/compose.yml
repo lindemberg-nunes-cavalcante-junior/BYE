@@ -1,0 +1,13 @@
+services:
+  portal:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+
+networks:
+  bye_net:
+    external: true

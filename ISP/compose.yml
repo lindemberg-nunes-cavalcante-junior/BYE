@@ -1,0 +1,40 @@
+services:
+  dns:
+    image: sameersbn/bind:latest
+#    ports:
+#      - "5353:53/udp"
+#      - "5353:53/tcp"
+    volumes:
+      - ./dns:/etc/bind
+    networks:
+      - bye_net
+
+  email:
+    image: bytemark/smtp
+    ports:
+      - "25:25"
+    networks:
+      - bye_net
+
+  webmail:
+    image: analogic/poste.io
+    environment:
+      - HOSTNAME=mail.bye.local
+    ports:
+      - "8080:80"
+    networks:
+      - bye_net
+
+  portal:
+    image: nginx:alpine
+    ports:
+      - "8090:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+
+networks:
+  bye_net:
+    external: true
+
