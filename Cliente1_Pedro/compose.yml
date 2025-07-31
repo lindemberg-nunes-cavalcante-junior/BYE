@@ -1,19 +1,75 @@
 services:
-  portal:
+  portal_c1:
     image: nginx:alpine
-    ports:
-      - "8081:80"
+    #ports:
+    #  - "8081:80"
     volumes:
       - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+  proxy_c1:
+      #image: ubuntu/apache2
+      build:
+        context: ./proxy
+        dockerfile: dockerfile
+      volumes:
+        - ./proxy/DummyFolder:/var/www
+        - ./proxy/DummyFolder:/usr/share/apache2
+      networks:
+        - bye_net
+
+  db:
+    image: postgres:15-alpine
+    container_name: sign-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-dbuser}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dbuserpass123}
+      POSTGRES_DB: ${DB_NAME:-docsign_db}
+    volumes:
+      - ./cliente1/postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-dbuser} -d ${DB_NAME:-docsign_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bye_net
+  ### Backend/API ###
+  backend:
+    image: salesfilho/sign-api:latest
+    container_name: sign-api
+    environment:
+      DB_HOST: db
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USER: ${DB_USER:-dbuser}
+      DB_PASSWORD: ${DB_PASSWORD:-dbuserpass123}
+      DB_NAME: ${DB_NAME:-docsign_db}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://backend:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bye_net 
+  ### Frontend / App ###
+  frontend:
+    image: salesfilho/sign-app:latest
+    container_name: sign-app
+    environment:
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:8000/api}
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
     networks:
       - bye_net
 
 networks:
   bye_net:
-    driver: bridge
-  bye_net_1:
-    driver: bridge
-  bye_net_2:
-    driver: bridge
-  bye_net_3:
-    driver: bridge
+    external: true

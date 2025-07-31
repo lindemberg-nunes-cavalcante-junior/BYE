@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  proxy_c3:
+    #image: ubuntu/apache2
+    build:
+      context: ./proxy
+      dockerfile: dockerfile
+    volumes:
+      - ./proxy/DummyFolder:/var/www
+      - ./proxy/DummyFolder:/usr/share/apache2
+    networks:
+      - bye_net
   mysql:
     image: mysql:5.7
     restart: always
@@ -14,13 +24,13 @@ services:
     networks:
       - bye_net
 
-  wordpress:
+  portal_c3:
     image: wordpress:latest
     restart: always
     depends_on:
       - mysql
-    ports:
-      - "8083:80"
+    #ports:
+    # - "8083:80"
     environment:
       WORDPRESS_DB_HOST: mysql:3306
       WORDPRESS_DB_NAME: wp_db
@@ -31,11 +41,11 @@ services:
     networks:
       - bye_net
 
-  phpmyadmin:
+  phpmyadmin2:
     image: phpmyadmin/phpmyadmin
     restart: always
-    ports:
-      - "8084:80"
+    #ports:
+    #  - "8084:80"
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: rootpass
@@ -46,10 +56,4 @@ services:
 
 networks:
   bye_net:
-    driver: bridge
-  bye_net_1:
-    driver: bridge
-  bye_net_2:
-    driver: bridge
-  bye_net_3:
-    driver: bridge
+    external: true

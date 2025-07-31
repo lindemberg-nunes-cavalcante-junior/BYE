@@ -12,7 +12,7 @@ down_compose() {
 }
 
 down_compose "Cliente1_Pedro"
-down_compose "Cliente2_Lindembarg"
+down_compose "Cliente2_Lindemberg"
 down_compose "Cliente3_Matheus"
 down_compose "ISP"
 

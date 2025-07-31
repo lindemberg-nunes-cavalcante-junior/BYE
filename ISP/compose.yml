@@ -25,7 +25,7 @@ services:
     environment:
       - HOSTNAME=mail.bye.local
     ports:
-      - "8080:80"
+      - "8082:80"
     networks:
       - bye_net
 
@@ -37,6 +37,7 @@ services:
       - ./portal:/usr/share/nginx/html:ro
     networks:
       - bye_net
+
   proxy_isp:
       #image: ubuntu/apache2
       build:
@@ -48,18 +49,9 @@ services:
         - ./proxy/DummyFolder:/var/www
         - ./proxy/DummyFolder:/usr/share/apache2
       networks:
-      - bye_net
-      - bye_net_1
-      - bye_net_2
-      - bye_net_3
+        - bye_net
 
 networks:
   bye_net:
-    driver: bridge
-  bye_net_1:
-    driver: bridge
-  bye_net_2:
-    driver: bridge
-  bye_net_3:
-    driver: bridge
+    external: true
 
