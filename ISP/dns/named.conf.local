@@ -1,0 +1,23 @@
+zone "bye.br"{
+    type master;
+    allow-transfer{127.0.0.1;};
+    file "/etc/bind/db.bye.br";
+};
+
+zone "cliente1.br"{
+    type master;
+    allow-transfer{127.0.0.1;};
+    file "/etc/bind/db.cliente1.br";
+};
+
+zone "cliente2.br"{
+    type master;
+    allow-transfer{127.0.0.1;};
+    file "/etc/bind/db.cliente2.br";
+};
+
+zone "cliente3.br"{
+    type master;
+    allow-transfer{127.0.0.1;};
+    file "/etc/bind/db.cliente3.br";
+};

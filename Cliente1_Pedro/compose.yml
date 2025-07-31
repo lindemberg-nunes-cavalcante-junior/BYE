@@ -1,0 +1,19 @@
+services:
+  portal:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+
+networks:
+  bye_net:
+    driver: bridge
+  bye_net_1:
+    driver: bridge
+  bye_net_2:
+    driver: bridge
+  bye_net_3:
+    driver: bridge

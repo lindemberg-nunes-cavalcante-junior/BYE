@@ -1,0 +1,65 @@
+services:
+
+  dns:
+    # image: sameersbn/bind:latest
+    build:
+      context: ./dns
+      dockerfile: Dockerfile
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    #volumes:
+    #  - ./dns:/etc/bind
+    networks:
+      - bye_net
+
+  email:
+    image: bytemark/smtp
+    ports:
+      - "25:25"
+    networks:
+      - bye_net
+
+  webmail:
+    image: analogic/poste.io
+    environment:
+      - HOSTNAME=mail.bye.local
+    ports:
+      - "8080:80"
+    networks:
+      - bye_net
+
+  portal:
+    image: nginx:alpine
+    #ports:
+    #  - "80:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+  proxy_isp:
+      #image: ubuntu/apache2
+      build:
+        context: ./proxy
+        dockerfile: dockerfile
+      ports:
+        - "80:80"
+      volumes:
+        - ./proxy/DummyFolder:/var/www
+        - ./proxy/DummyFolder:/usr/share/apache2
+      networks:
+      - bye_net
+      - bye_net_1
+      - bye_net_2
+      - bye_net_3
+
+networks:
+  bye_net:
+    driver: bridge
+  bye_net_1:
+    driver: bridge
+  bye_net_2:
+    driver: bridge
+  bye_net_3:
+    driver: bridge
+
