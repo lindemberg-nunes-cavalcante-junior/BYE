@@ -10,3 +10,5 @@ $TTL 604800
 @ IN NS ns.
 @ IN A  192.168.1.60 ;IP do dns
 portal IN A 192.168.1.60 ;IP do servidor
+sign IN CNAME portal
+hotsite IN CNAME portal

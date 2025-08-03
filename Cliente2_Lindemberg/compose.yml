@@ -4,9 +4,6 @@ services:
       build:
         context: ./proxy
         dockerfile: dockerfile
-      volumes:
-        - ./proxy/DummyFolder:/var/www
-        - ./proxy/DummyFolder:/usr/share/apache2
       networks:
         - bye_net
   portal_c2:
@@ -16,6 +13,7 @@ services:
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_SITE_URL: https://portal.cliente2.br
     volumes:
       - ./wordpress:/var/www/html
     depends_on:
@@ -38,7 +36,7 @@ services:
   phpmyadmin:
     image: phpmyadmin
     ports:
-      - "8082:80"
+      - "8083:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootpass

@@ -23,7 +23,7 @@ services:
   webmail:
     image: analogic/poste.io
     environment:
-      - HOSTNAME=mail.bye.local
+      - HOSTNAME=mail.bye.br
     ports:
       - "8082:80"
     networks:
@@ -44,14 +44,12 @@ services:
         context: ./proxy
         dockerfile: dockerfile
       ports:
-        - "80:80"
-      volumes:
-        - ./proxy/DummyFolder:/var/www
-        - ./proxy/DummyFolder:/usr/share/apache2
+        - "80:80/tcp"
+        - "443:443/tcp"
       networks:
         - bye_net
 
 networks:
   bye_net:
-    external: true
+    external: true 
 

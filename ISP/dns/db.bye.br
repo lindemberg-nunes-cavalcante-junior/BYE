@@ -10,4 +10,4 @@ $TTL 604800
 @ IN NS ns.
 @ IN A  192.168.1.60 ;IP do dns
 portal IN A 192.168.1.60 ;IP do servidor
-; adiciona o ip pro email
+mail IN CNAME portal

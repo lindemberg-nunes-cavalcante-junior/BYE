@@ -6,9 +6,6 @@ services:
     build:
       context: ./proxy
       dockerfile: dockerfile
-    volumes:
-      - ./proxy/DummyFolder:/var/www
-      - ./proxy/DummyFolder:/usr/share/apache2
     networks:
       - bye_net
   mysql:
@@ -36,6 +33,7 @@ services:
       WORDPRESS_DB_NAME: wp_db
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wp_pass
+      WORDPRESS_SITE_URL: http://portal.cliente3.br
     volumes:
       - ./wordpress:/var/www/html
     networks:
