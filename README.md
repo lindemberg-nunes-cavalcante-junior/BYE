@@ -37,8 +37,7 @@ Comunicação direta entre containers protegida e roteada via proxy
 | 3       | Wordpress e o Portal  | 
 | 1       | aceitação do sign     | 
 
-###  Segurança
-- [ ] Configuração Nginx/Apache
+
 
 ---
 
@@ -74,3 +73,9 @@ Comunicação direta entre containers protegida e roteada via proxy
   - dificuldade do cliente 3
   ---
 
+##  Planejamento para Sprint 4
+
+- A coclusão final
+- juntar toda a dcoumentação
+- configurar o cliente 3
+- e a arrumar o webemail
