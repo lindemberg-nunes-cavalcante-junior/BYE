@@ -29,7 +29,7 @@ services:
     #ports:
     # - "8083:80"
     environment:
-      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_HOST: mysql:3306 #excluir essa porta antes da execução (teste)
       WORDPRESS_DB_NAME: wp_db
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wp_pass
