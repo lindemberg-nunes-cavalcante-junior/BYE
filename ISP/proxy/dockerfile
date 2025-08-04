@@ -1,0 +1,32 @@
+FROM ubuntu/apache2:latest
+
+COPY apache2.conf /etc/apache2
+COPY default-ssl.conf /etc/apache2/sites-available
+COPY 000-default.conf /etc/apache2/sites-enabled/
+COPY /ssl/certs/C1.crt /etc/ssl/certs/
+COPY /ssl/certs/C2.crt /etc/ssl/certs/
+COPY /ssl/certs/C3.crt /etc/ssl/certs/
+COPY /ssl/certs/ISP.crt /etc/ssl/certs/
+COPY /ssl/private/C1.key /etc/ssl/private/
+COPY /ssl/private/C2.key /etc/ssl/private/
+COPY /ssl/private/C3.key /etc/ssl/private/
+COPY /ssl/private/ISP.key /etc/ssl/private/
+
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install iputils-ping -y
+
+RUN a2enmod proxy proxy_http proxy_connect rewrite ssl proxy_html headers
+RUN a2ensite default-ssl.conf
+
+
+RUN service apache2 restart
+
+
+#COPY 000-default.conf /etc/apache2/sites-enabled/
+
+
+
+# RUN apt-get install vim -y
+
+EXPOSE 80/tcp
+EXPOSE 443/tcp

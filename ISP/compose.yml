@@ -1,0 +1,55 @@
+services:
+
+  dns:
+    # image: sameersbn/bind:latest
+    build:
+      context: ./dns
+      dockerfile: Dockerfile
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    #volumes:
+    #  - ./dns:/etc/bind
+    networks:
+      - bye_net
+
+  email:
+    image: bytemark/smtp
+    ports:
+      - "25:25"
+    networks:
+      - bye_net
+
+  webmail:
+    image: analogic/poste.io
+    environment:
+      - HOSTNAME=mail.bye.br
+    ports:
+      - "8082:80"
+    networks:
+      - bye_net
+
+  portal:
+    image: nginx:alpine
+    #ports:
+    #  - "80:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+
+  proxy_isp:
+      #image: ubuntu/apache2
+      build:
+        context: ./proxy
+        dockerfile: dockerfile
+      ports:
+        - "80:80/tcp"
+        - "443:443/tcp"
+      networks:
+        - bye_net
+
+networks:
+  bye_net:
+    external: true 
+

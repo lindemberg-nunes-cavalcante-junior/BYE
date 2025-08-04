@@ -1,0 +1,1 @@
+<?php // Configuração básica do WordPress ?>
