@@ -4,6 +4,8 @@ services:
       build:
         context: ./proxy
         dockerfile: dockerfile
+      ports:
+        - "80:80"
       networks:
         - bye_net
   portal_c2:
@@ -49,4 +51,5 @@ volumes:
 
 networks:
   bye_net:
-    external: true
+    driver: bridge
+    
