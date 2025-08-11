@@ -105,3 +105,7 @@ Parar todos os serviços:
 - Para testar a resolução DNS entre containers, utilize comandos `dig` ou `nslookup` a partir de outros containers na rede `bye_net`.
 - Caso precise expor o DNS no host, é necessário garantir que a porta não esteja em uso pelo sistema operacional, ou usar uma porta alternativa.
 - O projeto foi desenvolvido para ser executado em ambiente local de testes e simulação.
+
+
+
+

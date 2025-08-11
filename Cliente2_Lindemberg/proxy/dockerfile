@@ -1,10 +1,10 @@
 FROM ubuntu/apache2:latest
 
 COPY apache2.conf /etc/apache2
-#COPY default-ssl.conf /etc/apache2/sites-available
+COPY default-ssl.conf /etc/apache2/sites-available
 COPY 000-default.conf /etc/apache2/sites-enabled/
-#COPY /certs/server.crt /etc/ssl/certs/
-#COPY /certs/server.key /etc/ssl/private/
+COPY /ssl/certs/C2.crt /etc/ssl/certs/
+COPY /ssl/private/C2.key /etc/ssl/private/
 
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install iputils-ping -y && apt-get install tcpdump -y 
