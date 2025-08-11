@@ -1,8 +1,28 @@
-# Projeto BYE - Infraestrutura Docker para ISP e Clientes
+# Projeto Final - Administração de Sistemas Abertos (ASA)
+Alunos> Matheus Luiz, Pedro, Lindemberg
+##  Descrição
+Este projeto consiste na **implementação de um Provedor de Serviços de Internet (ISP) usando arquitetura baseada em microsserviços**, empregando ferramentas de **Infraestrutura como Código (IaC)** e práticas **DevOps**.  
+O objetivo é oferecer para cada cliente serviços de DNS, e-mail e proxy reverso HTTP com **isolamento, segurança e criptografia**.
 
-Este projeto simula uma rede de um provedor de internet (ISP) com três clientes (Pedro, Lindembarg e Matheus), utilizando containers Docker para representar cada serviço de rede.
+---
 
-## Estrutura Geral
+##  Objetivos do Projeto
+- Desenvolver infraestrutura de microsserviços utilizando **Docker**.
+- Oferecer:
+  - **Serviço de DNS** (Bind9)
+  - **Serviço de E-mail** (Postfix + Dovecot)
+  - **Proxy reverso HTTP** (Nginx,Apache) com **SSL/TLS** (Let's Encrypt).
+- Garantir isolamento e segurança por meio de:
+  - Redes isoladas (Docker Network)
+  - Políticas de acesso restritivas (firewall, ACLs)
+  - Criptografia de dados em trânsito (HTTPS, STARTTLS)
+- Documentar e validar a infraestrutura:
+  - Testes automatizados
+  - Manual de implantação (passo a passo + vídeo)
+  - Relatório técnico com métricas
+
+
+ ## Estrutura Geral
 
 ```
 BYE/
@@ -42,70 +62,49 @@ BYE/
 └── README.md
 ```
 
-## Componentes por Cliente
+![alt text](image.png)
 
-### Cliente 1 - Pedro
-- **portal:** HTML simples (`index.html`)
-- **compose.yml:** Sobe o serviço de portal
+---
 
-### Cliente 2 - Lindembarg
-- **CMS:** WordPress com Nginx, PHP-FPM e MySQL
-- **nginx/default.conf:** Configuração personalizada do Nginx
-- **compose.yml:** Integra todos os serviços com volumes e variáveis `.env`
+##  Tecnologias Utilizadas
+- **Docker**
+- **Bind9**
+- **Postfix**
+- **Apache**
+- **Nginx**
 
-### Cliente 3 - Matheus
-- **CMS:** WordPress com a mesma estrutura do Cliente 2
-- **compose.yml:** Similar ao do Cliente 2
+- **Let's Encrypt**
+- **GitHub Actions**
+- **Firewall / ACLs**
 
-### ISP
-- **portal:** Página HTML do ISP
-- **dns:** Configuração Bind9 para resolução de nomes, com imagem `sameersbn/bind:latest`  
-  **Importante:** O serviço DNS não expõe porta para o host para evitar conflitos com portas já usadas no sistema operacional. O DNS funciona internamente na rede Docker `bye_net`.
-- **email:** Servidor SMTP personalizado (imagem própria)
-- **webmail:** Interface Roundcube
-- **compose.yml:** Orquestra todos os serviços do ISP
-- **rede:** Todos os serviços compartilham a rede Docker externa chamada `bye_net`. Caso não exista, deve ser criada manualmente antes de subir os serviços:
+---
 
-```bash
-docker network create bye_net
-```
+##  Planejamento das Sprints
 
-## Rede Docker
+| Semana | Sprint | Entregas |
+|--------|--------|----------|
+| 2      | Sprint 1 | Artefatos de gerenciamento + Infraestrutura do Provedor |
+| 4      | Sprint 2 | Artefatos de gerenciamento + Infraestrutura do Cliente 1 |
+| 6      | Sprint 3 | Artefatos de gerenciamento + Infraestrutura dos Clientes 2 e 3 |
+| 8      | Sprint 4 | Documentação final + Apresentação final |
 
-- A rede `bye_net` foi configurada como externa e compartilhada por todos os containers dos clientes e ISP, para que possam se comunicar internamente.
-- Isso evita exposição desnecessária de portas ao host, reduzindo conflitos e melhorando a comunicação interna dos serviços.
+---
 
-## Scripts de Automação
+## 📦 Estrutura de Entregas
 
-### `start.sh`
-- Executa `docker compose up -d` em cada diretório de cliente e no ISP, iniciando todos os containers da rede.
+1. **Artefatos de gerenciamento**
+   - Cronogramas
+   - Tarefas (issues)
+   - Atas de reunião
+   - Relatórios
+2. **Infraestrutura do Provedor**
+   - Código versionado
+   - Relatório de testes
+   - Manual de implantação
+3. **Infraestrutura do Cliente 1 Pedro**
+4. **Infraestrutura do Cliente 2 Lindemberg**
+5. **Infraestrutura do Cliente 3  Matheus**
+6. **Apresentação Final**
+   - Slides e vídeo de demonstração
 
-### `stop.sh`
-- Executa `docker compose down` nos mesmos diretórios para parar todos os containers.
-
-## Comandos para executar
-
-Subir todos os serviços:
-
-```bash
-./start.sh
-```
-
-Parar todos os serviços:
-
-```bash
-./stop.sh
-```
-
-## Observações
-
-- As imagens base usadas nos CMSs são as oficiais do WordPress.
-- A imagem do DNS foi alterada para `sameersbn/bind:latest`, pois a imagem antiga `internetsystemsconsortium/bind9:9.16` não está mais disponível no Docker Hub.
-- O serviço de DNS não expõe portas para o host para evitar conflito com serviços locais de DNS/mDNS.
-- Para testar a resolução DNS entre containers, utilize comandos `dig` ou `nslookup` a partir de outros containers na rede `bye_net`.
-- Caso precise expor o DNS no host, é necessário garantir que a porta não esteja em uso pelo sistema operacional, ou usar uma porta alternativa.
-- O projeto foi desenvolvido para ser executado em ambiente local de testes e simulação.
-
-
-
-
+---
