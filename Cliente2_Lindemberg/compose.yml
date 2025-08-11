@@ -1,13 +1,15 @@
 services:
   proxy_c2:
-      #image: ubuntu/apache2
-      build:
-        context: ./proxy
-        dockerfile: dockerfile
-      networks:
-        - bye_net
+    #image: ubuntu/apache2
+    build:
+      context: ./proxy
+      dockerfile: dockerfile
+    networks:
+      - bye_net
   portal_c2:
     image: wordpress:php8.2-apache
+    #ports:
+    #  - 8080:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: user

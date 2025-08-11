@@ -1,0 +1,14 @@
+# Ignore database files and sockets
+**/postgres_data/
+**/mysql/
+**/*.sock
+**/*.pid
+**/ib_buffer_pool
+**/auto.cnf
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore entire client data directories (adjust if needed)
+Cliente*/**/data/

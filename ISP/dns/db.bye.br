@@ -8,6 +8,6 @@ $TTL 604800
 ;
 
 @ IN NS ns.
-@ IN A  10.25.1.60 ;IP do dns
-portal IN A 10.25.1.60 ;IP do servidor
+@ IN A  10.19.231.83 ;IP do dns
+portal IN A 10.19.231.83 ;IP do servidor
 mail IN CNAME portal
