@@ -1,0 +1,51 @@
+services:
+    proxy_c3:
+      build:
+        context: ./Proxy
+        dockerfile: dockerfile
+      networks:
+        - c3
+
+    wordpress2:
+      image: wordpress:php8.2-apache
+      environment:
+        WORDPRESS_DB_HOST: db2
+        WORDPRESS_DB_USER: user
+        WORDPRESS_DB_PASSWORD: password
+        WORDPRESS_DB_NAME: wordpress2
+        WORDPRESS_URL: https://portal.cliente3.br
+        WORDPRESS_HOME: https://portal.cliente3.br
+      volumes:
+        - ./wordpress:/var/www/html
+      depends_on:
+        - db2
+      networks:
+        - c3
+    
+    db2:
+      image: mysql:5.7
+      environment:
+        MYSQL_DATABASE: wordpress2
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: rootpass
+      volumes:
+        - ./db_data:/var/lib/mysql
+      networks:
+        - c3
+    
+    phpmyadmin2:
+      image: phpmyadmin
+      #ports:
+      #  - "8083:80"
+      environment:
+        PMA_HOST: db2
+        MYSQL_ROOT_PASSWORD: rootpass
+      depends_on:
+        - db2
+      networks:
+        - c3
+
+networks:
+  c3:
+    external: true

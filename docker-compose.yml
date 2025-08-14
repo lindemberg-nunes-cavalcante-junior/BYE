@@ -1,0 +1,7 @@
+version: '3'
+
+include:
+   - ./ISP/compose.yml
+   - ./Cliente2/compose.yml
+   - ./Cliente3/compose.yml
+   - ./cliente1/compose.yml

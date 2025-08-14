@@ -1,6 +1,7 @@
-/Cliente2_Lindemberg/wordpress
-/Cliente2_Lindemberg/db_data
-/Cliente2_Lindemberg/wordpress/.htaccess
+/Cliente1/postgres_data
 
-/Cliente3_Matheus/wordpress
-/Cliente3_Matheus/mysql
+/Cliente2/db_data
+/Cliente2/wordpress
+
+/Cliente3/db_data
+/Cliente3/wordpress
