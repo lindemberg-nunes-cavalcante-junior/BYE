@@ -1,14 +1,18 @@
 $TTL 604800
-@ IN SOA ns.cliente1.br. root.cliente1.br. (
-             2
-        604801
-        86400
-        2419200
-        604801 )
-;
+@   IN  SOA ns.cliente1.br. root.cliente1.br. (
+        2          ; Serial
+        604801     ; Refresh
+        86400      ; Retry
+        2419200    ; Expire
+        604801 )   ; Negative Cache TTL
 
-@ IN NS ns.
-@ IN A  10.19.231.83 ;IP do dns
-portal IN A 10.19.231.83;IP do servidor
-sign IN CNAME portal
-hotsite IN CNAME portal
+; Servidor de nomes
+@       IN  NS  ns.cliente1.br.
+
+; Registros A
+ns          IN  A   192.168.1.8     ; IP do servidor DNS
+portal      IN  A   192.168.1.8     ; IP do servidor principal
+
+; Alias (CNAME)
+sign        IN  CNAME portal
+hotsite     IN  CNAME portal
