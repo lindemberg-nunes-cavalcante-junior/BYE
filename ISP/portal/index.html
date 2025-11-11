@@ -1,1 +1,170 @@
-<h1>Portal do ISP</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal BYE Internet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a192f, #0f4c75);
+      color: #f0f8ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #00b7ff;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #f0f8ff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00b7ff;
+    }
+
+    main {
+      text-align: center;
+      padding: 5rem 2rem;
+      flex-grow: 1;
+    }
+
+    main h2 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    main p {
+      font-size: 1.2rem;
+      color: #dce3f0;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      background: #00b7ff;
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0099cc;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aac9e6;
+    }
+
+    footer a {
+      color: #00b7ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        margin-top: 0.8rem;
+      }
+
+      main h2 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BYE Internet</h1>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Clientes</a>
+      <a href="#">Suporte</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Bem-vindo ao Portal BYE</h2>
+    <p>
+      Acesso rápido aos serviços da sua rede BYE Internet.  
+      Conecte-se ao painel, e-mail e áreas administrativas com segurança e agilidade.
+    </p>
+
+    <div class="btn-group">
+      <button class="btn" onclick="window.location.href='https://portal.bye.br/login'">Painel</button>
+      <button class="btn" onclick="window.location.href='https://portal.bye.br/webmail'">Webmail</button>
+      <button class="btn" onclick="window.location.href='https://portal.bye.br/suporte'">Suporte</button>
+      <button class="btn" onclick="window.location.href='https://portal.bye.br/admin'">Administração</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 BYE Internet — Todos os direitos reservados.  
+    <br />
+    <a href="mailto:suporte@bye.br">suporte@bye.br</a>
+  </footer>
+</body>
+</html>
