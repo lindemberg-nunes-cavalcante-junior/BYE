@@ -1,1 +1,181 @@
-<h1>Portal do Cliente Pedro</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Adéu Internet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3f2b96, #a8c0ff);
+      color: #f8f9ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      color: #9be0ff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #ffffff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #9be0ff;
+    }
+
+    main {
+      text-align: center;
+      padding: 5rem 2rem;
+      flex-grow: 1;
+    }
+
+    main h2 {
+      font-size: 2.6rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    main p {
+      font-size: 1.15rem;
+      color: #e2e7ff;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #6dd5fa, #2980b9);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #2b86c5, #6dd5fa);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #dbe4ff;
+    }
+
+    footer a {
+      color: #9be0ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Animações suaves */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    main h2, main p, .btn-group {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        margin-top: 0.8rem;
+      }
+
+      main h2 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Adéu Internet</h1>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Área do Cliente</a>
+      <a href="#">Suporte</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Bem-vindo ao Portal Adéu</h2>
+    <p>
+      O seu ponto de acesso central aos serviços da Adéu Internet.  
+      Gerencie sua conexão, contas e suporte técnico de forma rápida e segura.
+    </p>
+
+    <div class="btn-group">
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/login'">Painel do Cliente</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/webmail'">Webmail</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/suporte'">Suporte</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/admin'">Administração</button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Adéu Internet — Todos os direitos reservados.  
+    <br />
+    <a href="mailto:suporte@cliente1.br">suporte@cliente1.br</a>
+  </footer>
+</body>
+</html>
