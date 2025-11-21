@@ -1,54 +1,55 @@
+version: "3.9"
+
 services:
   proxy_c2:
     build:
-      context: ./proxy            # Diretório onde está o Dockerfile do proxy
-      dockerfile: dockerfile      # Nome do arquivo Dockerfile (poderia ser "Dockerfile")
+      context: ./proxy
+      dockerfile: dockerfile
     networks:
-      - bye_net                   # Conecta o container à rede externa "bye_net"
+      - bye_net
 
   portal_c2:
-    image: wordpress:php8.2-apache   # Usa a imagem oficial do WordPress com PHP 8.2 e Apache
+    image: wordpress:php8.2-apache
     environment:
-      WORDPRESS_DB_HOST: db          # Servidor onde está o banco de dados
-      WORDPRESS_DB_USER: user        # Usuário do banco
-      WORDPRESS_DB_PASSWORD: password# Senha do banco
-      WORDPRESS_DB_NAME: wordpress   # Nome do banco que o WordPress irá usar
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
     volumes:
-      - wp_data:/var/www/html        # Volume nomeado persistente para dados do WordPress
-                                      # (impede que você perca o site ao reiniciar)
+      - wp_data:/var/www/html
     depends_on:
-      - db                           # Garante que o container do banco suba antes do WordPress
+      - db
     networks:
-      - bye_net                      # Conecta à rede para se comunicar com o DB e o Proxy
+      - bye_net
 
   db:
-    image: mysql:5.7                 # Usa MySQL 5.7 (muito usado em WordPress)
+    image: mysql:5.7
     environment:
-      MYSQL_DATABASE: wordpress      # Cria o banco automaticamente no primeiro start
-      MYSQL_USER: user              # Cria o usuário
-      MYSQL_PASSWORD: password      # Senha do usuário
-      MYSQL_ROOT_PASSWORD: rootpass # Senha do usuário root do MySQL
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpass
     volumes:
-      - db_data:/var/lib/mysql       # Volume nomeado para persistir os dados do banco
+      - db_data:/var/lib/mysql
     networks:
-      - bye_net                      # Conectado à mesma rede dos outros serviços
+      - bye_net
 
   phpmyadmin:
-    image: phpmyadmin                 # Interface web para administrar o MySQL
+    image: phpmyadmin
     ports:
-      - "8083:80"                     # Acessível em http://localhost:8083
+      - "8083:80"
     environment:
-      PMA_HOST: db                    # Diz ao phpMyAdmin que o MySQL está no container "db"
-      MYSQL_ROOT_PASSWORD: rootpass   # Senha do root para permitir login
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
     depends_on:
-      - db                            # Espera o banco subir antes
+      - db
     networks:
-      - bye_net                       # Conectado à rede para acesso ao DB
+      - bye_net
 
 volumes:
-  db_data:   # Volume para o banco de dados
-  wp_data:   # Volume para arquivos do WordPress
+  db_data:
+  wp_data:
 
 networks:
   bye_net:
-    external: true   # Usa uma rede criada previamente com "docker network create bye_net"
+    external: true
