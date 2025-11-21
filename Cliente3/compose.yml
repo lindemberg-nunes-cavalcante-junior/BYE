@@ -2,12 +2,15 @@ version: '3.8'
 
 services:
   proxy_c3:
-    #image: ubuntu/apache2
     build:
       context: ./proxy
       dockerfile: dockerfile
+    restart: always
+    depends_on:
+      - portal_c3
     networks:
       - bye_net
+
   mysql:
     image: mysql:5.7
     restart: always
@@ -26,10 +29,8 @@ services:
     restart: always
     depends_on:
       - mysql
-    #ports:
-    # - "8083:80"
     environment:
-      WORDPRESS_DB_HOST: mysql 
+      WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_NAME: wp_db
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wp_pass
@@ -38,11 +39,9 @@ services:
     networks:
       - bye_net
 
-  phpmyadmin2:
+  phpmyadmin_c3:
     image: phpmyadmin/phpmyadmin
     restart: always
-    #ports:
-    #  - "8084:80"
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: rootpass
