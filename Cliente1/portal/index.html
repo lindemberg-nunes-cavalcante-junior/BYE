@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal BYE Internet</title>
+  <title>Portal Adéu Internet</title>
   <style>
     * {
       margin: 0;
@@ -13,8 +13,8 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0a192f, #0f4c75);
-      color: #f0f8ff;
+      background: linear-gradient(135deg, #3f2b96, #a8c0ff);
+      color: #f8f9ff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -22,8 +22,8 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
       padding: 1.2rem 3rem;
       display: flex;
       justify-content: space-between;
@@ -32,21 +32,22 @@
     }
 
     header h1 {
-      font-size: 1.8rem;
-      color: #00b7ff;
+      font-size: 1.9rem;
+      color: #9be0ff;
+      font-weight: 700;
       letter-spacing: 1px;
     }
 
     nav a {
-      color: #f0f8ff;
+      color: #ffffff;
       margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 500;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      color: #00b7ff;
+      color: #9be0ff;
     }
 
     main {
@@ -56,14 +57,14 @@
     }
 
     main h2 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       color: #ffffff;
       margin-bottom: 1rem;
     }
 
     main p {
-      font-size: 1.2rem;
-      color: #dce3f0;
+      font-size: 1.15rem;
+      color: #e2e7ff;
       max-width: 700px;
       margin: 0 auto 2rem;
       line-height: 1.6;
@@ -78,7 +79,7 @@
     }
 
     .btn {
-      background: #00b7ff;
+      background: linear-gradient(135deg, #6dd5fa, #2980b9);
       color: #fff;
       padding: 0.9rem 2rem;
       border-radius: 30px;
@@ -91,27 +92,37 @@
     }
 
     .btn:hover {
-      background: #0099cc;
+      background: linear-gradient(135deg, #2b86c5, #6dd5fa);
       transform: scale(1.05);
     }
 
     footer {
       text-align: center;
       padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.9rem;
-      color: #aac9e6;
+      color: #dbe4ff;
     }
 
     footer a {
-      color: #00b7ff;
+      color: #9be0ff;
       text-decoration: none;
       transition: 0.3s;
     }
 
     footer a:hover {
       color: #fff;
+    }
+
+    /* Animações suaves */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    main h2, main p, .btn-group {
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
     /* Responsivo */
@@ -137,29 +148,34 @@
 </head>
 <body>
   <header>
-    <h1>BYE Internet</h1>
+    <h1>Adéu Internet</h1>
     <nav>
       <a href="#">Início</a>
-      <a href="#">Clientes</a>
+      <a href="#">Área do Cliente</a>
       <a href="#">Suporte</a>
       <a href="#">Contato</a>
     </nav>
   </header>
 
   <main>
-    <h2>Bem-vindo ao Portal BYE</h2>
+    <h2>Bem-vindo ao Portal Adéu</h2>
     <p>
-      Acesso rápido aos serviços da sua rede BYE Internet.  
-     
+      O seu ponto de acesso central aos serviços da Adéu Internet.  
+      Gerencie sua conexão, contas e suporte técnico de forma rápida e segura.
     </p>
 
-  
+    <div class="btn-group">
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/login'">Painel do Cliente</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/webmail'">Webmail</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/suporte'">Suporte</button>
+      <button class="btn" onclick="window.location.href='https://portal.cliente1.br/admin'">Administração</button>
+    </div>
   </main>
 
   <footer>
-    © 2025 BYE Internet — Todos os direitos reservados.  
+    © 2025 Adéu Internet — Todos os direitos reservados.  
     <br />
-    <a href="mailto:suporte@bye.br">suporte@bye.br</a>
+    <a href="mailto:suporte@cliente1.br">suporte@cliente1.br</a>
   </footer>
 </body>
 </html>

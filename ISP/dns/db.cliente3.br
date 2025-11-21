@@ -8,6 +8,6 @@ $TTL 604800
 ;
 
 @ IN NS ns.
-@ IN A  10.19.231.83 ;IP do dns
-portal IN A 10.19.231.83 ;IP do servidor
+@ IN A  192.168.1.8 ;IP do dns
+portal IN A 192.168.1.8 ;IP do servidor
 php IN CNAME portal

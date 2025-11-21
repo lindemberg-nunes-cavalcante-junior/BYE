@@ -1,0 +1,73 @@
+services:  
+  portal_c1:
+    image: nginx:alpine
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    networks:
+      - bye_net
+
+  proxy_c1:
+    platform: linux/arm64
+    build:
+      context: ./proxy
+      dockerfile: dockerfile
+    ports:
+      - "8080:80"     # proxy escuta no host pela porta 8080
+    networks:
+      - bye_net
+
+  db:
+    image: postgres:15-alpine
+    container_name: sign-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-dbuser}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dbuserpass123}
+      POSTGRES_DB: ${DB_NAME:-docsign_db}
+    volumes:
+      - ./cliente1/postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-dbuser} -d ${DB_NAME:-docsign_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bye_net
+
+  backend:
+    platform: linux/arm64
+    image: salesfilho/sign-api:latest
+    container_name: sign-api
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: dbuser
+      DB_PASSWORD: dbuserpass123
+      DB_NAME: docsign_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8000/health" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - bye_net
+
+  frontend:
+    platform: linux/arm64
+    image: salesfilho/sign-app:latest
+    container_name: sign-app
+    ports:
+      - "8081:80"   # frontend acessível em localhost:8081
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - bye_net
+
+networks:
+  bye_net:
+    external: true

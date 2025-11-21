@@ -1,55 +1,55 @@
 services:
 
   dns:
-    # image: sameersbn/bind:latest
+    # image: sameersbn/bind:latest       # Imagem pronta do Bind (comentada)
     build:
-      context: ./dns
-      dockerfile: Dockerfile
+      context: ./dns                     # Diretório onde está o Dockerfile do servidor DNS
+      dockerfile: Dockerfile             # Nome do arquivo Dockerfile usado
     ports:
-      - "53:53/udp"
-      - "53:53/tcp"
+      - "53:53/udp"                      # Porta DNS padrão (UDP) exposta
+      - "53:53/tcp"                      # Porta DNS TCP (usada para consultas grandes/zonas)
     #volumes:
-    #  - ./dns:/etc/bind
+    #  - ./dns:/etc/bind                 # Caso queira montar os arquivos de configuração do Bind
     networks:
-      - bye_net
+      - bye_net                          # Conectado à rede interna para comunicação com outros serviços
 
   email:
-    image: bytemark/smtp
+    image: bytemark/smtp                 # Servidor SMTP simples (somente envio)
     ports:
-      - "25:25"
+      - "25:25"                          # Porta SMTP (envio de email)
     networks:
-      - bye_net
+      - bye_net                          # Rede interna compartilhada
 
   webmail:
-    image: analogic/poste.io
+    image: analogic/poste.io             # Servidor de email completo + interface web
     environment:
-      - HOSTNAME=mail.bye.br
+      - HOSTNAME=mail.bye.br             # Hostname público usado pelo serviço de email
     ports:
-      - "8082:80"
+      - "8082:80"                        # Interface web acessível em http://localhost:8082
     networks:
-      - bye_net
+      - bye_net                          # Conectado à mesma rede que o DNS e SMTP
 
   portal:
-    image: nginx:alpine
+    image: nginx:alpine                  # Servidor web leve (Nginx)
     #ports:
-    #  - "80:80"
+    #  - "80:80"                         # Comentado — provavelmente será acessado pelo proxy
     volumes:
-      - ./portal:/usr/share/nginx/html:ro
+      - ./portal:/usr/share/nginx/html:ro  # Monta os arquivos do site estático no Nginx (somente leitura)
     networks:
-      - bye_net
+      - bye_net                          # Disponível para acesso interno pelo proxy
 
   proxy_isp:
-      #image: ubuntu/apache2
+      #image: ubuntu/apache2             # Exemplo de imagem de Apache (comentado)
       build:
-        context: ./proxy
-        dockerfile: dockerfile
+        context: ./proxy                 # Diretório com o Dockerfile do proxy reverso
+        dockerfile: dockerfile           # Dockerfile personalizado
       ports:
-        - "80:80/tcp"
-        - "443:443/tcp"
+        - "80:80/tcp"                    # Porta HTTP pública
+        - "443:443/tcp"                  # Porta HTTPS pública
       networks:
-        - bye_net
+        - bye_net                        # Precisa ver todos os outros containers para redirecionar
 
 networks:
   bye_net:
-    external: true 
-
+    external: true                       # Usa uma rede criada manualmente com:
+                                         # docker network create bye_net

@@ -1,0 +1,19 @@
+options {
+    directory "/var/cache/bind";
+
+    // Escuta apenas IPv4
+    listen-on { any; };
+    listen-on-v6 { none; };   // 🚫 Desativa IPv6
+
+    // Permite consultas recursivas (DNS normal)
+    recursion yes;
+    allow-query { any; };
+
+    // Encaminha consultas externas para servidores públicos (Google/Cloudflare)
+    forwarders {
+        8.8.8.8;
+        1.1.1.1;
+    };
+
+    dnssec-validation no;
+};

@@ -1,13 +1,15 @@
 $TTL 604800
-@ IN SOA ns.bye.br. root.bye.br. (
-             1
-        604800
-        86400
-        2419200
-        604800 )
-;
+@   IN  SOA ns.bye.br. root.bye.br. (
+        1          ; Serial
+        604800     ; Refresh
+        86400      ; Retry
+        2419200    ; Expire
+        604800 )   ; Negative Cache TTL
 
-@ IN NS ns.
-@ IN A  10.19.231.83 ;IP do dns
-portal IN A 10.19.231.83 ;IP do servidor
-mail IN CNAME portal
+; Servidor de nomes
+@       IN  NS  ns.bye.br.
+
+; Registros A
+ns      IN  A   192.168.1.8     ; IP do DNS
+portal  IN  A   192.168.1.8     ; IP do servidor
+mail    IN  CNAME portal
